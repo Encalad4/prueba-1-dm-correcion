@@ -1,0 +1,46 @@
+
+
+Table fct_table {
+ usage_id integer [primary key]
+ plan_id integer [ref: > dim_plan.plan_id]
+ user_id integer [ref: > dim_user.user_id]
+
+ date_id integer [ref: > dim_date.date_id]
+ service_type string
+ usage_amount float
+ revenue float 
+}
+
+Table dim_date {
+  date_id integer [primary key]
+  date date
+  year integer
+  month integer
+  day integer
+}
+
+Table dim_plan {
+  plan_id integer [primary key]
+  plan_name string
+  usd_monthy_pay float
+  minutes_included integer
+  messages_included integer
+  mb_per_month_included float
+  usd_per_gb float
+  usd_per_message float
+  usd_per_minute float
+}
+
+Table dim_user {
+  user_id integer [primary key]
+  age integer
+  city string
+  reg_date date
+  churn_date date
+}
+
+
+
+
+
+
