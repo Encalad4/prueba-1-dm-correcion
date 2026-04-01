@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:15
+    env: 
+      - PG_USER: "root"
+      - PG_PASS: "root"
+      - PG_DATABASE: "megaline_db"
+      - PG_PORT: 5432
+      - PG_HOST: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      "postges_volume_megaline:root/to/data"
+  
+  mage_ai:
+    image: mage_ai:17
+    env: 
+      - db_connection: "http://postgres:5432:root:root:megaline_db"
+    volumes:
+      -"mage_ai_volume_megaline":"root/to/data"
+    ports:
+      - "6789:6789"
